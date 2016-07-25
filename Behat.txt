@@ -1,0 +1,46 @@
+Behat
+
+Install composer from https://getcomposer.org/doc/00-intro.md#globally
+
+To conform composer installation type composer
+
+Create a new composer.bat file alongside composer.phar:
+
+C:\bin>echo @php "%~dp0composer.phar" %*>composer.bat
+
+create composer.json file
+
+{
+"require": {
+"behat/behat": "2.4.*@stable",
+"behat/mink": "1.4@stable",
+"behat/mink-goutte-driver": "*",
+"behat/mink-selenium-driver": "*",
+"behat/mink-selenium2-driver": "*",
+"behat/mink-extension": "~2.0",
+"behat/mink-sahi-driver": "*"
+ 
+},
+"minimum-stability": "dev",
+"config": {
+"bin-dir": "bin/"
+}
+}
+
+then type composer.install
+
+create behat.yml file
+
+default:
+  paths:
+    features: features
+    bootstrap: %behat.paths.features%/bootstrap
+  extensions:
+    Behat\MinkExtension\Extension:
+      goutte: ~
+ 
+ download selenium from 
+ https://selenium-release.storage.googleapis.com/index.html?path=2.42/
+ java -jar selenium-server-standalone-2.42.0.jar
+
+ RUN TEST WITH vendor/bin/behat
